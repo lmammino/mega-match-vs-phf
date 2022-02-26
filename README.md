@@ -31,6 +31,9 @@ You will see the results in the stdout or, for an HTML report, check out `target
 
 Run locally on a MacBook Pro (13-inch, M1, 2020)  Apple M1 - 16 Gb
 
+Rust version: `rustc 1.59.0 (9d1b2106e 2022-02-23)`
+
+
 | Bench                  | Description                                          | time (ns) |
 |------------------------|------------------------------------------------------|-----------|
 | **mega_match first**   | first entry of the table                             |    1.9123 |
@@ -42,3 +45,15 @@ Run locally on a MacBook Pro (13-inch, M1, 2020)  Apple M1 - 16 Gb
 | **phf last**           | last entry in the table                              |    17.947 |
 | **phf missing**        | entry not in the table                               |    17.422 |
 
+
+
+## Contributing
+
+Everyone is very welcome to contribute to this project.
+You can contribute just by submitting bugs or suggesting improvements by
+[opening an issue on GitHub](https://github.com/lmammino/mega-match-vs-phf/issues).
+
+
+## License
+
+Licensed under [MIT License](LICENSE). © Luciano Mammino.
