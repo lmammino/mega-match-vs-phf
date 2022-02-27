@@ -33,18 +33,25 @@ Run locally on a MacBook Pro (13-inch, M1, 2020)  Apple M1 - 16 Gb
 
 Rust version: `rustc 1.59.0 (9d1b2106e 2022-02-23)`
 
+| Item position | `mega_match` | `phf`      |
+|---------------|-------------:|-----------:|
+| first         | **1.877**    | 14.363     |
+| middle        | 29.384       | **14.431** |
+| last          | **2.837**    | 17.535     |
+| missing       | **6.886**    | 13.055     |
 
-| Bench                  | Description                                          | time (ns) |
-|------------------------|------------------------------------------------------|-----------|
-| **mega_match first**   | first entry of the table                             |    1.9123 |
-| **mega_match middle**  | entry in the middle of the table                     |    30.142 |
-| **mega_match last**    | last entry in the table                              |    2.9138 |
-| **mega_match missing** | entry not in the table (default branch of the match) |    3.1926 |
-| **phf first**          | first entry of the table                             |    14.846 |
-| **phf middle**         | entry in the middle of the table                     |    14.809 |
-| **phf last**           | last entry in the table                              |    17.947 |
-| **phf missing**        | entry not in the table                               |    17.422 |
+Times are in nanoseconds (ns).
 
+
+## Conclusions
+
+The mega match is obviously way faster when trying to fech the first item, but it's slower than `phf` when looking up an item in the middle of the mega match.
+
+What's interesting is that the mega match seems to be very very fast (and way faster than `phf`) also when looking up items at the very end of the match (or even missing items).
+
+It's currently not clear why this happens but there's probably some smart compilation happening here and it could be worth to look at the generated assembly.
+
+Finally, it's worth noting that `phf` has a pretty constant run time (only sliightly variable by the length of the input data) which is not dependent from the position of the item in the lookup table.
 
 
 ## Contributing
