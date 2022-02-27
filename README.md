@@ -49,7 +49,13 @@ The mega match is obviously way faster when trying to fech the first item, but i
 
 What's interesting is that the mega match seems to be very very fast (and way faster than `phf`) also when looking up items at the very end of the match (or even missing items).
 
-It's currently not clear why this happens but there's probably some smart compilation happening here and it could be worth to look at the generated assembly.
+~~It's currently not clear why this happens but there's probably some smart compilation happening here and it could be worth to look at the generated assembly.~~
+
+I had a look at the generated assembly for [a simplified case similar to this one](https://rust.godbolt.org/z/1vdq8YTc3) and it seems the compiler is NOT generating any smart data structure (e.g. a prefix tree) to speed up this particular case.
+
+What's more likely to happen here is that branch prediction makes this code very fast in certain circumstances.
+
+Feel free to contribute to this project if you know what's really going on here.
 
 Finally, it's worth noting that `phf` has a pretty constant run time (only sliightly variable by the length of the input data) which is not dependent from the position of the item in the lookup table.
 
